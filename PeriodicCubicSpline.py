@@ -26,16 +26,21 @@ H = []
 for i in range(len(h)-1):
     row = [0 for t in range(i)] + [h[i],2*(h[i]+h[i+1]),h[i+1]] + [0 for t in range(len(h)-2-i)]
     H.append(row)
-
 import numpy as np
+H = np.array(H)
 
 # Periodic Spline
 G = [0] + G + [0]
-H = [ [2*(h[-1]+h[0]),h[0]] + [0 for t in range(len(h)-2)] + [h[-1]] ] + H + [ [h[-1]] + [0 for t in range(len(h)-2)] + [h[-2],2*(h[-2]+h[-1])] ]
+print H
+# H = np.delete(H,np.s_[-1],axis=1)
+# H = np.delete(H,np.s_[-1],axis=0)
+print H
+H = H.tolist()
+H = [ [2*(h[-1]+h[0]),h[0]] + [0 for t in range(len(H[0])-3)] + [h[-1]] ] + H + [ [h[-1]] + [0 for t in range(len(H[0])-3)] + [h[-2],2*(h[-2]+h[-1])] ]
 print h
 print np.array(H)
 sigma = np.linalg.solve(H,G).tolist()
-
+# sigma = sigma + [sigma[0]]
 
 A = [sigma[i+1]/(6*h[i]) for i in range(len(h))]
 B = [sigma[i]/(6*h[i]) for i in range(len(h))]

@@ -30,8 +30,8 @@ for i in range(len(h)-1):
 import numpy as np
 
 # Clamped Spline
-G = [0] + G + [0]
-H = [ [2*(h[0]),h[0]] + [0 for t in range(len(h)-1)] ] + H + [ [0 for t in range(len(h)-1)] + [h[-1],2*(h[-1])] ]
+G = [6*(g[0]-so)] + G + [6*(-g[-1]+sn)]
+H = [ [2*(h[0]),h[0]] + [0 for t in range(len(H[0])-2)] ] + H + [ [0 for t in range(len(H[0])-2)] + [h[-1],2*(h[-1])] ]
 print H
 sigma = np.linalg.solve(H,G).tolist()
 
