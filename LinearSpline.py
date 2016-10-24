@@ -13,6 +13,11 @@ with open("input.txt") as f:
         so = float(line.split(" ")[0])
         sn = float(line.split(" ")[1])
 
+xy = zip(x,y)
+xy.sort()
+y = [a for b,a in xy]
+x = [b for b,a in xy]
+
 print "Linear Spline"
 def get_prediction(x,y,xstar):
     try:
@@ -38,9 +43,9 @@ ax = fig.add_subplot(111)
 ax.set_title("Linear Spline")
 ax.set_ylabel("Y")
 ax.set_xlabel("X")
-ax.plot(t,ty, "-", label='Spline')
+ax.plot(t,ty, "-", label='Linear Spline')
 ax.scatter(xt,yt, s=90, c='r', marker="o",label="Test Points")
 ax.scatter(x,y, s=90, c='b', marker="s",label="Original Data")
-plt.legend(loc='upper left')
+plt.legend(loc='best')
 plt.show()
-fig.savefig("Plot.png")
+fig.savefig("Linear Spline Plot.png")

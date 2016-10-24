@@ -13,6 +13,12 @@ with open("input.txt") as f:
         so = float(line.split(" ")[0])
         sn = float(line.split(" ")[1])
 
+xy = zip(x,y)
+xy.sort()
+y = [a for b,a in xy]
+x = [b for b,a in xy]
+
+
 import numpy as np
 n = len(x)
 A = np.tri(n,n) - np.tri(n,n,-2)
@@ -45,12 +51,12 @@ ty = [get_prediction(x,y,z,t[i]) for i in range(len(t))]
 import matplotlib.pyplot as plt
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.set_title("Linear Spline")
+ax.set_title("Quadratic Spline")
 ax.set_ylabel("Y")
 ax.set_xlabel("X")
-ax.plot(t,ty, "-", label='Spline')
+ax.plot(t,ty, "-", label='Quadratic Spline')
 ax.scatter(xt,yt, s=90, c='r', marker="o",label="Test Points")
 ax.scatter(x,y, s=90, c='b', marker="s",label="Original Data")
-plt.legend(loc='upper left')
+plt.legend(loc='best')
 plt.show()
-fig.savefig("Plot.png")
+fig.savefig("Quadratic Spline Plot.png")
