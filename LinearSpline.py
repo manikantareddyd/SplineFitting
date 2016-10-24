@@ -27,7 +27,7 @@ for xstar in xt:
     yt.append(ystar)
     print xstar,"\t",ystar
 import random
-t = [random.random()*(max(x) - min(x)) + min(x) for i in range(10*len(x))] + x
+t = [random.random()*(max(x) - min(x)) + min(x) for i in range(100*len(x))] + x
 t.sort()
 ty = [get_prediction(x,y,t[i]) for i in range(len(t))]
 
@@ -39,7 +39,8 @@ ax.set_title("Linear Spline")
 ax.set_ylabel("Y")
 ax.set_xlabel("X")
 ax.plot(t,ty, "-", label='Spline')
-ax.scatter(xt,yt, s=30, c='r', marker="s")
+ax.scatter(xt,yt, s=90, c='r', marker="o",label="Test Points")
+ax.scatter(x,y, s=90, c='b', marker="s",label="Original Data")
 plt.legend(loc='upper left')
 plt.show()
 fig.savefig("Plot.png")
