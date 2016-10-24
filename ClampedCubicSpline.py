@@ -29,9 +29,10 @@ for i in range(len(h)-1):
 
 import numpy as np
 
-# Not a knot Spline
+# Clamped Spline
 G = [0] + G + [0]
-H = [[h[1],-h[1]-h[0],h[0]] + [0 for t in range(len(H[0])-3)]] + H + [[0 for t in range(len(H[0])-3)] + [h[-1],-h[-1]-h[-2],h[-2]]]
+H = [ [2*(h[0]),h[0]] + [0 for t in range(len(h)-1)] ] + H + [ [0 for t in range(len(h)-1)] + [h[-1],2*(h[-1])] ]
+print H
 sigma = np.linalg.solve(H,G).tolist()
 
 
@@ -62,12 +63,12 @@ ty = [get_prediction(x,y,h,sigma,t[i]) for i in range(len(t))]
 import matplotlib.pyplot as plt
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.set_title("Not-a-knot Cubic Spline")
+ax.set_title("Clamped Cubic Spline")
 ax.set_ylabel("Y")
 ax.set_xlabel("X")
-ax.plot(t,ty, "-", label='Not-a-knot Spline')
+ax.plot(t,ty, "-", label='Clamped Spline')
 ax.scatter(xt,yt, s=90, c='r', marker="o",label="Test Points")
 ax.scatter(x,y, s=90, c='b', marker="s",label="Original Data")
 plt.legend(loc='best')
 plt.show()
-fig.savefig("Not-a-knot Cubic Spline Plot.png")
+fig.savefig("Clamped Cubic Spline Plot.png")
