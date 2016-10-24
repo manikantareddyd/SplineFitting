@@ -18,6 +18,8 @@ xy.sort()
 y = [a for b,a in xy]
 x = [b for b,a in xy]
 
+
+print "Not-a-knot Cubic Spline"
 h =[x[i]-x[i-1] for i in range(1,len(x))]
 g = [(y[i]-y[i-1])/h[i-1] for i in range(1,len(x))]
 

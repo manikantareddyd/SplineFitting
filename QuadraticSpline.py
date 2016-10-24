@@ -18,7 +18,7 @@ xy.sort()
 y = [a for b,a in xy]
 x = [b for b,a in xy]
 
-
+print "Quadratic Spline"
 import numpy as np
 n = len(x)
 A = np.tri(n,n) - np.tri(n,n,-2)
@@ -27,15 +27,13 @@ A = A.astype(float)
 A = np.delete(A,np.s_[0],axis=0)
 A = A.tolist()
 A = [[1,-1]+[0 for i in range(len(A[0])-2)]] + A
-print A
+
 d = [0]
 for i in range(1,n):
     d.append( 2*(y[i]-y[i-1])/(x[i]-x[i-1]))
 d = np.array(d)
-print d
 z = np.linalg.solve(A,d).tolist()
 
-print len(z)
 def get_prediction(x,y,z,xstar):
     try:
         i = next(v[0] for v in enumerate(x) if v[1] > xstar)

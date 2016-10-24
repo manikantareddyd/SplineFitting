@@ -18,6 +18,8 @@ xy.sort()
 y = [a for b,a in xy]
 x = [b for b,a in xy]
 
+
+print "Clamped Cubic Spline"
 h =[x[i]-x[i-1] for i in range(1,len(x))]
 g = [(y[i]-y[i-1])/h[i-1] for i in range(1,len(x))]
 
@@ -32,7 +34,6 @@ import numpy as np
 # Clamped Spline
 G = [6*(g[0]-so)] + G + [6*(-g[-1]+sn)]
 H = [ [2*(h[0]),h[0]] + [0 for t in range(len(H[0])-2)] ] + H + [ [0 for t in range(len(H[0])-2)] + [h[-1],2*(h[-1])] ]
-print H
 sigma = np.linalg.solve(H,G).tolist()
 
 
