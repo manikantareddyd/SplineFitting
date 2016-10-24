@@ -23,18 +23,26 @@ import numpy as np
 n = len(x)
 A = np.tri(n,n) - np.tri(n,n,-2)
 A = A.astype(float)
-d = [0.0 for i in range(n)]
+
+A = np.delete(A,np.s_[0],axis=0)
+A = A.tolist()
+A = [[1,-1]+[0 for i in range(len(A[0])-2)]] + A
+print A
+d = [0]
 for i in range(1,n):
-    d[i] = 2*(y[i]-y[i-1])/(x[i]-x[i-1])
+    d.append( 2*(y[i]-y[i-1])/(x[i]-x[i-1]))
+d = np.array(d)
+print d
+z = np.linalg.solve(A,d).tolist()
 
-z = np.linalg.solve(A,d)
-
+print len(z)
 def get_prediction(x,y,z,xstar):
     try:
         i = next(v[0] for v in enumerate(x) if v[1] > xstar)
         return (z[i-1]*(xstar - x[i-1])) + ((z[i]-z[i-1])*((xstar - x[i-1])**2)/(2*(x[i]-x[i-1]))) + y[i-1]
     except:
         return y[-1]
+
 
 yt = []
 for xstar in xt:
