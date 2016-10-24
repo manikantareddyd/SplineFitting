@@ -52,3 +52,22 @@ for xstar in xt:
     ystar = get_prediction(x,y,h,sigma,xstar)
     yt.append(ystar)
     print xstar,"\t",ystar
+
+import random
+t = [random.random()*(max(x) - min(x)) + min(x) for i in range(100*len(x))] + x
+t.sort()
+ty = [get_prediction(x,y,h,sigma,t[i]) for i in range(len(t))]
+
+
+import matplotlib.pyplot as plt
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.set_title("Natural Cubic Spline")
+ax.set_ylabel("Y")
+ax.set_xlabel("X")
+ax.plot(t,ty, "-", label='Natural Spline')
+ax.scatter(xt,yt, s=90, c='r', marker="o",label="Test Points")
+ax.scatter(x,y, s=90, c='b', marker="s",label="Original Data")
+plt.legend(loc='best')
+plt.show()
+fig.savefig("Natural Cubic Spline Plot.png")
