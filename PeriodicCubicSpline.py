@@ -30,17 +30,17 @@ import numpy as np
 H = np.array(H)
 
 # Periodic Spline
-G = [0] + G + [0]
+G = [6*(g[0]-g[-1])] + G 
 print H
-# H = np.delete(H,np.s_[-1],axis=1)
-# H = np.delete(H,np.s_[-1],axis=0)
+H = np.delete(H,np.s_[-1],axis=1)
+H = np.delete(H,np.s_[-1],axis=0)
 print H
 H = H.tolist()
 H = [ [2*(h[-1]+h[0]),h[0]] + [0 for t in range(len(H[0])-3)] + [h[-1]] ] + H + [ [h[-1]] + [0 for t in range(len(H[0])-3)] + [h[-2],2*(h[-2]+h[-1])] ]
 print h
 print np.array(H)
 sigma = np.linalg.solve(H,G).tolist()
-# sigma = sigma + [sigma[0]]
+sigma = sigma + [sigma[0]]
 
 A = [sigma[i+1]/(6*h[i]) for i in range(len(h))]
 B = [sigma[i]/(6*h[i]) for i in range(len(h))]
