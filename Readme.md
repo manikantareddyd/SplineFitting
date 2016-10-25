@@ -13,7 +13,7 @@ Running the program
 >   python main.py
 
 Input has to given in the input.txt file. Sample input file has been provided below
->   
+<pre>
     -1.000 0.0385
     -0.500 0.1379
     0.000 1.0000
@@ -26,7 +26,7 @@ Input has to given in the input.txt file. Sample input file has been provided be
     0.8000
 
     -1.0 1.5
-
+</pre>
 Till the first line break data points have to be provided in 'x y' form.
 
 Then the test points have to be given.
