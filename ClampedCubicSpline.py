@@ -10,9 +10,14 @@ def ClampedCubicSpline():
         for line in f:
             if line == "\n": break
             xt.append(float(line.split(" ")[0]))
-        for line in f:
-            so = float(line.split(" ")[0])
-            sn = float(line.split(" ")[1])
+        try:
+            for line in f:
+                so = float(line.split(" ")[0])
+                sn = float(line.split(" ")[1])
+            asser(so)
+        except:
+            print "Clamped Boundary conditions not provided\nSee sample input"
+            exit(0)
 
     xy = zip(x,y)
     xy.sort()

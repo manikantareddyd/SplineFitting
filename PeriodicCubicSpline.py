@@ -10,9 +10,7 @@ def PeriodicCubicSpline():
         for line in f:
             if line == "\n": break
             xt.append(float(line.split(" ")[0]))
-        for line in f:
-            so = float(line.split(" ")[0])
-            sn = float(line.split(" ")[1])
+
 
     xy = zip(x,y)
     xy.sort()
