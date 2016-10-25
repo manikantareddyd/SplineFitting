@@ -1,4 +1,4 @@
-def ClampedCubicSpline():
+def Not_a_knot_CubicSpline():
     x = []
     y = []
     xt = []
@@ -20,7 +20,7 @@ def ClampedCubicSpline():
     x = [b for b,a in xy]
 
 
-    print "Clamped Cubic Spline"
+    print "Not-a-knot Cubic Spline"
     h =[x[i]-x[i-1] for i in range(1,len(x))]
     g = [(y[i]-y[i-1])/h[i-1] for i in range(1,len(x))]
 
@@ -32,9 +32,9 @@ def ClampedCubicSpline():
 
     import numpy as np
 
-    # Clamped Spline
-    G = [6*(g[0]-so)] + G + [6*(-g[-1]+sn)]
-    H = [ [2*(h[0]),h[0]] + [0 for t in range(len(H[0])-2)] ] + H + [ [0 for t in range(len(H[0])-2)] + [h[-1],2*(h[-1])] ]
+    # Not a knot Spline
+    G = [0] + G + [0]
+    H = [[h[1],-h[1]-h[0],h[0]] + [0 for t in range(len(H[0])-3)]] + H + [[0 for t in range(len(H[0])-3)] + [h[-1],-h[-1]-h[-2],h[-2]]]
     sigma = np.linalg.solve(H,G).tolist()
 
 
@@ -65,12 +65,12 @@ def ClampedCubicSpline():
     import matplotlib.pyplot as plt
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.set_title("Clamped Cubic Spline")
+    ax.set_title("Not_a_knot Cubic Spline")
     ax.set_ylabel("Y")
     ax.set_xlabel("X")
-    ax.plot(t,ty, "-", label='Clamped Spline')
+    ax.plot(t,ty, "-", label='Not_a_knot Spline')
     ax.scatter(xt,yt, s=90, c='r', marker="o",label="Test Points")
     ax.scatter(x,y, s=90, c='b', marker="s",label="Original Data")
     plt.legend(loc='best')
     plt.show()
-    fig.savefig("Clamped Cubic Spline Plot.png")
+    fig.savefig("Not_a_knot Cubic Spline Plot.png")
