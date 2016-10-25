@@ -14,18 +14,18 @@ Running the program
 
 Input has to given in the input.txt file. Sample input file has been provided below
 <pre>
-    -1.000 0.0385
-    -0.500 0.1379
-    0.000 1.0000
-    0.500 0.1379
-    1.000 0.0385
+-1.000 0.0385
+-0.500 0.1379
+0.000 1.0000
+0.500 0.1379
+1.000 0.0385
 
-    -0.8000
-    -0.2000
-    0.2000
-    0.8000
+-0.8000
+-0.2000
+0.2000
+0.8000
 
-    -1.0 1.5
+-1.0 1.5
 </pre>
 Till the first line break data points have to be provided in 'x y' form.
 
